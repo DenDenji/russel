@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Russel P. Malimata - Aspiring Web Developer, IT Student, and Music Enthusiast from Biñan, Laguna">
+  <title>Russel Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #faf9f7;
+      --foreground: #1a1614;
+      --card: #f5f3f0;
+      --primary: #6b2c3e;
+      --primary-light: #8b4a5a;
+      --primary-dark: #4a1a2a;
+      --primary-foreground: #faf9f7;
+      --secondary: #ebe7e2;
+      --muted: #a89f96;
+      --accent: #d4a24c;
+      --border: #e5e0da;
+      --cream: #faf9f7;
+      --cream-dark: #ebe7e2;
+      --gold: #d4a24c;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 2rem;
+      background: rgba(250, 249, 247, 0.9);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(107, 44, 62, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Mobile Menu - CSS Only Checkbox Hack */
+    .nav-checkbox {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--foreground);
+      padding: 0.5rem;
+    }
+
+    .nav-toggle-icon,
+    .nav-toggle-close {
+      display: block;
+    }
+
+    .nav-toggle-close {
+      display: none;
+    }
+
+    .nav-checkbox:checked ~ .nav-container .nav-toggle .nav-toggle-icon {
+      display: none;
+    }
+
+    .nav-checkbox:checked ~ .nav-container .nav-toggle .nav-toggle-close {
+      display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-decorative {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero-decorative.circle1 {
+      top: 5rem;
+      left: 3rem;
+      width: 6rem;
+      height: 6rem;
+      border: 2px solid rgba(107, 44, 62, 0.2);
+    }
+
+    .hero-decorative.circle2 {
+      bottom: 10rem;
+      right: 5rem;
+      width: 4rem;
+      height: 4rem;
+      background: rgba(107, 44, 62, 0.1);
+      animation-delay: 1s;
+    }
+
+    .hero-decorative.dot {
+      top: 10rem;
+      right: 10rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .hero-subtitle {
+      color: rgba(107, 44, 62, 0.7);
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease-out;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease-out 0.1s backwards;
+    }
+
+    .hero-title .gradient {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 1.25rem;
+      max-width: 32rem;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: flex-start; /* align with hero-content on wide screens */
+      width: 100%;
+      animation: fadeUp 0.6s ease-out 0.3s backwards;
+    }
+
+    @media (max-width: 768px) {
+      .hero-tags {
+        justify-content: center; /* center tags on small screens */
+      }
+    }
+
+    .hero-tag {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .hero-tag.primary {
+      background: rgba(107, 44, 62, 0.1);
+      color: var(--primary);
+    }
+
+    .hero-tag.accent {
+      background: rgba(212, 162, 76, 0.2);
+      color: var(--foreground);
+    }
+
+    .hero-tag.secondary {
+      background: var(--secondary);
+      color: var(--foreground);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      animation: fadeUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .scroll-indicator:hover {
+      color: var(--primary);
+    }
+
+    .scroll-indicator span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator svg {
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* Hero layout with image */
+    .hero-inner {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* ensure children (tags, buttons) start at left */
+      text-align: left;
+    }
+
+    .hero-image {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid var(--cream);
+      box-shadow: 0 20px 40px rgba(26,22,20,0.08);
+      transform: translateY(-6px);
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+      }
+
+      .hero-content {
+        text-align: center;
+        align-items: center; /* center children on small screens */
+      }
+
+      .hero-image img {
+        max-width: 220px;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      color: var(--primary);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-size: 0.875rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    .section-title .gradient {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .container-sm {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* About Section */
+    .about {
+      background: var(--background);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-address {
+      padding: 1rem;
+      background: var(--card);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-address p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .about-address strong {
+      color: var(--foreground);
+    }
+
+    .about-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .about-card {
+      padding: 1.5rem;
+      background: var(--card);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .about-card:hover {
+      border-color: rgba(107, 44, 62, 0.3);
+      box-shadow: 0 4px 20px rgba(107, 44, 62, 0.15);
+    }
+
+    .about-card-icon {
+      width: 3rem;
+      height: 3rem;
+      background: rgba(107, 44, 62, 0.1);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .about-card:hover .about-card-icon {
+      background: var(--primary);
+    }
+
+    .about-card-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--primary);
+      transition: color 0.3s ease;
+    }
+
+    .about-card:hover .about-card-icon svg {
+      color: var(--primary-foreground);
+    }
+
+    .about-card-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .about-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    /* Education Section */
+    .education {
+      background: rgba(235, 231, 226, 0.3);
+    }
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .timeline::before {
+        left: 50%;
+        transform: translateX(-1px);
+      }
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 4rem;
+    }
+
+    @media (min-width: 768px) {
+      .timeline-item {
+        padding-left: 0;
+        width: 50%;
+      }
+
+      .timeline-item:nth-child(odd) {
+        padding-right: 3rem;
+        text-align: right;
+      }
+
+      .timeline-item:nth-child(even) {
+        margin-left: 50%;
+        padding-left: 3rem;
+      }
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 2rem;
+      width: 1rem;
+      height: 1rem;
+      background: var(--primary);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      border: 4px solid var(--background);
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) {
+      .timeline-item:nth-child(odd) .timeline-dot {
+        left: auto;
+        right: -0.5rem;
+        transform: translateX(50%);
+      }
+
+      .timeline-item:nth-child(even) .timeline-dot {
+        left: -0.5rem;
+        transform: translateX(-50%);
+      }
+    }
+
+    .timeline-card {
+      display: inline-block;
+      padding: 1.5rem;
+      background: var(--card);
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .timeline-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-card.current {
+      box-shadow: 0 0 0 2px rgba(107, 44, 62, 0.2);
+    }
+
+    .timeline-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .timeline-item:nth-child(odd) .timeline-icon {
+        margin-left: auto;
+      }
+    }
+
+    .timeline-icon.accent {
+      background: rgba(212, 162, 76, 0.2);
+    }
+
+    .timeline-icon.primary-light {
+      background: rgba(107, 44, 62, 0.1);
+    }
+
+    .timeline-icon.primary {
+      background: rgba(107, 44, 62, 0.2);
+    }
+
+    .timeline-icon.gradient {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+
+    .timeline-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary);
+    }
+
+    .timeline-icon.gradient svg {
+      color: var(--primary-foreground);
+    }
+
+    .timeline-level {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .timeline-item:nth-child(odd) .timeline-level {
+        justify-content: flex-end;
+      }
+    }
+
+    .timeline-badge {
+      padding: 0.125rem 0.5rem;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-size: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      border-radius: 9999px;
+    }
+
+    .timeline-school {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .timeline-course {
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Skills Section */
+    .skills {
+      background: var(--background);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .skill-card {
+      padding: 2rem;
+      background: var(--card);
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(107, 44, 62, 0.3);
+      box-shadow: 0 4px 20px rgba(107, 44, 62, 0.15);
+    }
+
+    .skill-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.1);
+    }
+
+    .skill-icon svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: var(--primary-foreground);
+    }
+
+    .skill-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-description {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-progress {
+      position: relative;
+    }
+
+    .skill-progress-label {
+      position: absolute;
+      right: 0;
+      top: -1.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .skill-progress-bar {
+      height: 0.5rem;
+      background: var(--secondary);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .skill-progress-fill {
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 9999px;
+    }
+
+    /* Hobbies Section */
+    .hobbies {
+      background: rgba(235, 231, 226, 0.3);
+    }
+
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hobbies-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .hobby-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: box-shadow 0.5s ease;
+    }
+
+    .hobby-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .hobby-image {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+
+    .hobby-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .hobby-card:hover .hobby-image img {
+      transform: scale(1.1);
+    }
+
+    .hobby-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 22, 20, 0.8), rgba(26, 22, 20, 0.2), transparent);
+    }
+
+    .hobby-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+    }
+
+    .hobby-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background: var(--primary);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .hobby-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: var(--primary-foreground);
+    }
+
+    .hobby-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-foreground);
+      margin-bottom: 0.25rem;
+    }
+
+    .hobby-description {
+      color: rgba(250, 249, 247, 0.8);
+      font-size: 0.875rem;
+    }
+
+    /* Favorites Section */
+    .favorites {
+      background: var(--background);
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .favorites-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .favorite-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      aspect-ratio: 3/4;
+    }
+
+    .favorite-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .favorite-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .favorite-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--foreground), rgba(26, 22, 20, 0.5), transparent);
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .favorite-card:hover .favorite-overlay {
+      opacity: 0.9;
+    }
+
+    .favorite-content {
+      position: absolute;
+      inset: 0;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .favorite-icon {
+      width: 3rem;
+      height: 3rem;
+      background: rgba(107, 44, 62, 0.9);
+      backdrop-filter: blur(4px);
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .favorite-card:hover .favorite-icon {
+      transform: scale(1.1);
+    }
+
+    .favorite-icon svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--primary-foreground);
+    }
+
+    .favorite-label {
+      color: rgba(250, 249, 247, 0.7);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .favorite-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-foreground);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 1.5rem;
+      background: var(--foreground);
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--primary-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .footer-description {
+      color: rgba(250, 249, 247, 0.7);
+      max-width: 28rem;
+      margin: 0 auto 2rem;
+    }
+
+    .footer-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: rgba(250, 249, 247, 0.6);
+      font-size: 0.875rem;
+    }
+
+    .footer-credit svg {
+      width: 1rem;
+      height: 1rem;
+      color: var(--primary);
+      fill: var(--primary);
+    }
+
+    .footer-copyright {
+      color: rgba(250, 249, 247, 0.4);
+      font-size: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    /* Mobile Navigation - Pure CSS */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--background);
+        flex-direction: column;
+        padding: 1.5rem;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        padding: 0 1.5rem;
+      }
+
+      .nav-checkbox:checked ~ .nav-container .nav-links {
+        max-height: 300px;
+        opacity: 1;
+        padding: 1.5rem;
+      }
+
+      .nav-links a {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+        color: var(--foreground);
+        display: block;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+    }
+
+    /* Utility Classes */
+    .text-center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <input type="checkbox" id="navCheckbox" class="nav-checkbox">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">R<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="#favorites">Favorites</a></li>
+      </ul>
+      <label for="navCheckbox" class="nav-toggle" aria-label="Toggle menu">
+        <span class="nav-toggle-icon">☰</span>
+        <span class="nav-toggle-close">✕</span>
+      </label>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-content">
+        <h1 class="hero-title font-display">
+          Russel P.<br>
+          <span class="gradient">Malimata</span>
+        </h1>
+        <p class="hero-description">Aspiring Web Developer • IT Student • Music Enthusiast</p>
+        
+        <div class="hero-tags">
+          <span class="hero-tag primary">PUP Biñan</span>
+          <span class="hero-tag accent">BSIT Student</span>
+          <span class="hero-tag secondary">Biñan, Laguna</span>
+        </div>
+      </div>
+      
+      <div class="hero-image">
+        <img src="assets/download (1).jfif" alt="Portrait of Russel" loading="lazy" decoding="async" />
+      </div> 
+    </div>
+    
+    <a href="#about" class="scroll-indicator">
+      <span>Scroll</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-label">About Me</span>
+          <h2 class="section-title font-display">Hello, I'm <span class="gradient">Russel</span></h2>
+          <p>A passionate IT student from Biñan, Laguna, currently pursuing my Bachelor of Science in Information Technology at Polytechnic University of the Philippines - Biñan Campus. I combine my love for technology with my passion for music.</p>
+          <div class="about-address">
+            <p><strong>Current Address:</strong><br>Olivarez Homes South, Sto. Tomas, Biñan, Laguna</p>
+          </div>
+        </div>
+        
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <p class="about-card-label">Age</p>
+            <p class="about-card-value font-display">18 years old</p>
+          </div>
+          
+          <div class="about-card">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <p class="about-card-label">Birthplace</p>
+            <p class="about-card-value font-display">Biñan, Laguna</p>
+          </div>
+          
+          <div class="about-card">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <p class="about-card-label">Religion</p>
+            <p class="about-card-value font-display">Christian</p>
+          </div>
+          
+          <div class="about-card">
+            <div class="about-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <p class="about-card-label">Family Province</p>
+            <p class="about-card-value font-display">Oriental Mindoro</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="education" id="education">
+    <div class="container-sm">
+      <div class="section-header">
+        <span class="section-label">My Journey</span>
+        <h2 class="section-title font-display">Education</h2>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon accent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <div class="timeline-level font-display">Elementary</div>
+            <p class="timeline-school">Sto. Tomas Elementary School</p>
+            <p class="timeline-school">Pag-Ibig Christian Academy</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon primary-light">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="timeline-level font-display">High School</div>
+            <p class="timeline-school">Biñan Secondary School of Applied Academics</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-icon primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="timeline-level font-display">Senior High School</div>
+            <p class="timeline-school">Biñan City Senior High School - West Campus</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card current">
+            <div class="timeline-icon gradient">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="timeline-level font-display">
+              College
+              <span class="timeline-badge">Current</span>
+            </div>
+            <p class="timeline-school">Polytechnic University of the Philippines - Biñan</p>
+            <p class="timeline-course">Bachelor of Science in Information Technology</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <div class="container-sm">
+      <div class="section-header">
+        <span class="section-label">What I Know</span>
+        <h2 class="section-title font-display">Technical Skills</h2>
+      </div>
+      
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="skill-title font-display">Basic Programming in Java</h3>
+          <p class="skill-description">Understanding of object-oriented programming concepts and Java fundamentals</p>
+          <div class="skill-progress">
+            <span class="skill-progress-label">60%</span>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+            </svg>
+          </div>
+          <h3 class="skill-title font-display">Basic Troubleshooting in Laptop</h3>
+          <p class="skill-description">Hardware and software diagnostics, system maintenance and repair</p>
+          <div class="skill-progress">
+            <span class="skill-progress-label">70%</span>
+            <div class="skill-progress-bar">
+              <div class="skill-progress-fill" style="width: 70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hobbies Section -->
+  <section class="hobbies" id="hobbies">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Beyond Coding</span>
+        <h2 class="section-title font-display">My Hobbies</h2>
+      </div>
+      
+      <div class="hobbies-grid">
+        <div class="hobby-card">
+          <div class="hobby-image">
+            <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&h=450&fit=crop" alt="Playing Guitar and Keyboard">
+          </div>
+          <div class="hobby-overlay"></div>
+          <div class="hobby-content">
+            <div class="hobby-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="hobby-title font-display">Playing Guitar & Keyboard</h3>
+            <p class="hobby-description">Creating melodies and expressing emotions through instruments</p>
+          </div>
+        </div>
+        
+        <div class="hobby-card">
+          <div class="hobby-image">
+            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=600&h=450&fit=crop" alt="Singing and Composing">
+          </div>
+          <div class="hobby-overlay"></div>
+          <div class="hobby-content">
+            <div class="hobby-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" x2="12" y1="19" y2="22"></line>
+              </svg>
+            </div>
+            <h3 class="hobby-title font-display">Singing & Composing</h3>
+            <p class="hobby-description">Writing original songs and performing music</p>
+          </div>
+        </div>
+        
+        <div class="hobby-card">
+          <div class="hobby-image">
+            <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&h=450&fit=crop" alt="Watching Movies">
+          </div>
+          <div class="hobby-overlay"></div>
+          <div class="hobby-content">
+            <div class="hobby-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18"></rect>
+                <line x1="7" x2="7" y1="2" y2="22"></line>
+                <line x1="17" x2="17" y1="2" y2="22"></line>
+                <line x1="2" x2="22" y1="12" y2="12"></line>
+                <line x1="2" x2="7" y1="7" y2="7"></line>
+                <line x1="2" x2="7" y1="17" y2="17"></line>
+                <line x1="17" x2="22" y1="17" y2="17"></line>
+                <line x1="17" x2="22" y1="7" y2="7"></line>
+              </svg>
+            </div>
+            <h3 class="hobby-title font-display">Watching Movies</h3>
+            <p class="hobby-description">Enjoying stories through the magic of cinema</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Favorites Section -->
+  <section class="favorites" id="favorites">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Personal</span>
+        <h2 class="section-title font-display">My Favorites</h2>
+      </div>
+      
+      <div class="favorites-grid">
+        <div class="favorite-card">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=450&h=600&fit=crop" alt="Pesto Pasta">
+          <div class="favorite-overlay"></div>
+          <div class="favorite-content">
+            <div class="favorite-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                <path d="M7 2v20"></path>
+                <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+              </svg>
+            </div>
+            <p class="favorite-label">Favorite Food</p>
+            <h3 class="favorite-title font-display">Pesto Pasta</h3>
+          </div>
+        </div>
+        
+        <div class="favorite-card">
+          <img src="https://images.unsplash.com/photo-1507924538820-ede94a04019d?w=450&h=600&fit=crop" alt="Musical & Fantasy Movies">
+          <div class="favorite-overlay"></div>
+          <div class="favorite-content">
+            <div class="favorite-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18"></rect>
+                <line x1="7" x2="7" y1="2" y2="22"></line>
+                <line x1="17" x2="17" y1="2" y2="22"></line>
+                <line x1="2" x2="22" y1="12" y2="12"></line>
+                <line x1="2" x2="7" y1="7" y2="7"></line>
+                <line x1="2" x2="7" y1="17" y2="17"></line>
+                <line x1="17" x2="22" y1="17" y2="17"></line>
+                <line x1="17" x2="22" y1="7" y2="7"></line>
+              </svg>
+            </div>
+            <p class="favorite-label">Movie Genre</p>
+            <h3 class="favorite-title font-display">Musical & Fantasy</h3>
+          </div>
+        </div>
+        
+        <div class="favorite-card">
+          <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=450&h=600&fit=crop" alt="Maroon Color">
+          <div class="favorite-overlay"></div>
+          <div class="favorite-content">
+            <div class="favorite-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="13.5" cy="6.5" r="0.5"></circle>
+                <circle cx="17.5" cy="10.5" r="0.5"></circle>
+                <circle cx="8.5" cy="7.5" r="0.5"></circle>
+                <circle cx="6.5" cy="12.5" r="0.5"></circle>
+                <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"></path>
+              </svg>
+            </div>
+            <p class="favorite-label">Favorite Color</p>
+            <h3 class="favorite-title font-display">Maroon</h3>
+          </div>
+        </div>
+        
+        <div class="favorite-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=450&h=600&fit=crop" alt="Web Developer">
+          <div class="favorite-overlay"></div>
+          <div class="favorite-content">
+            <div class="favorite-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <p class="favorite-label">Dream Job</p>
+            <h3 class="favorite-title font-display">Web Developer</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="footer-copyright">© Russel 2026 All Rights Reserved</p>
+  </footer>
+</body>
+</html>
